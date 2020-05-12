@@ -4,7 +4,7 @@ A two-player tic-tac-toe game
 
 ## Starting the Game
 
-`python Tic-Tac-Toe.py`
+`python tictac.py`
 
 ## Requirements
 
