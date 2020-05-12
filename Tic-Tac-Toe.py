@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import tkinter as tk
+import os
 
 class TicTacToe:
     def __init__(self):
@@ -86,14 +87,18 @@ class TicTacToe:
             if (self.board[pos[0]] == self.board[pos[1]] == self.board[pos[2]] and 
                 self.board[pos[0]] in ["X", "O"]):
                 self.game_end = True
+                self.status.set(f"{self.board[pos[0]]} wins!")
 
                 for i in pos:
                     self.buttons[i].config(bg="orange")
-                    self.status.set(f"{self.board[pos[0]]} wins!")
 
-        if not self.game_end and self.move_count == len(self.board):
-            self.game_end = True
-            self.status.set("Draw!")
+        if not self.game_end: 
+            os.system("afplay -t 0.05s sounds/click.mp3")
+            if self.move_count == len(self.board):
+                self.game_end = True
+                self.status.set("Draw!")
+        else:
+            os.system("afplay -t 0.05s sounds/win.mp3")
 
 
 if __name__ == "__main__":

@@ -1,6 +1,6 @@
 # Tic-Tac-Toe!
 
-A two-player tic-tac-toe game.
+A two-player tic-tac-toe game
 
 ## Starting the Game
 
@@ -8,7 +8,8 @@ A two-player tic-tac-toe game.
 
 ## Requirements
 
-[Tkinter](https://wiki.python.org/moin/TkInter)
+- [Tkinter](https://wiki.python.org/moin/TkInter)
+- Sound effects currently work only on MacOS.
 
 ## Screenshots
 
