@@ -8,8 +8,16 @@ A two-player tic-tac-toe game
 
 ## Requirements
 
-- [Tkinter](https://wiki.python.org/moin/TkInter)
-- Sound effects currently work only on MacOS.
+[Tkinter](https://wiki.python.org/moin/TkInter)
+
+## App Version (MacOS)
+
+This will create an application called `Tic-Tac-Toe` in the Launchpad using `py2app`.
+
+```
+cd app/
+make
+```
 
 ## Screenshots
 
