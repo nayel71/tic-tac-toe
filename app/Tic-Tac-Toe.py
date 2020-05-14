@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import tkinter as tk
+import os
 
 class TicTacToe:
     def __init__(self):
