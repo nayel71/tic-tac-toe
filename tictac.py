@@ -4,12 +4,18 @@ import tkinter as tk
 
 class TicTacToe:
     def __init__(self):
-        self.board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+        self.x = "x"
+        self.o = "o"
+        self.blank = " "
+
+        self.board = []
+        self.board_size = 9
+        for i in range(self.board_size):
+                self.board.append(self.blank)
+
         self.buttons = []
         self.move_count = 0
         self.game_end = False
-        self.x = "x"
-        self.o = "o"
 
         self.window = tk.Tk()
         self.window.title("Tic Tac Toe!")
@@ -24,7 +30,7 @@ class TicTacToe:
                       width=2,
                       bg="navy", fg="white", bd=8,
                       font="Helvetica 56 bold",
-                      command=lambda: self.play(pos)
+                      command=lambda: self.click(pos)
             )
         )
         self.buttons[pos].pack(side="left")
@@ -52,11 +58,11 @@ class TicTacToe:
         self.window.mainloop()
 
 
-    def play(self, pos):
+    def click(self, pos):
         if self.game_end:
             return
 
-        if self.board[pos] == " ":
+        if self.board[pos] == self.blank:
             self.move_count += 1
 
             if self.move_count % 2 == 1:
@@ -87,14 +93,13 @@ class TicTacToe:
                              [2, 4, 6]] # right diagonal
 
         for pos in winning_positions:
-            if (self.board[pos[0]] == self.board[pos[1]] == self.board[pos[2]] and 
-                self.board[pos[0]] in [self.x, self.o]):
+            if self.board[pos[0]] == self.board[pos[1]] == self.board[pos[2]] != self.blank:
                 self.game_end = True
 
                 for i in pos:
                     self.buttons[i].config(bg="orange")
 
-        if self.move_count == len(self.board):
+        if self.move_count == self.board_size:
             self.game_end = True
 
 
