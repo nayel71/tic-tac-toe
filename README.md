@@ -21,4 +21,8 @@ make
 
 ## Screenshots
 
-![start](screenshots/start.png)![xwin](screenshots/xwin.png)![owin](screenshots/owin.png)
+<p float="left">
+  <img src="screenshots/start.png" width="270" />
+  <img src="screenshots/xwin.png" width="270" /> 
+  <img src="screenshots/owin.png" width="270" />
+</p>
