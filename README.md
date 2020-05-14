@@ -10,9 +10,9 @@ A two-player tic-tac-toe game
 
 [Tkinter](https://wiki.python.org/moin/TkInter)
 
-## App Version (MacOS)
+## App Version (macOS)
 
-This will create an application called `Tic-Tac-Toe` in the Launchpad using `py2app`.
+This will create an application called `Tic-Tac-Toe` in the Launchpad using [`py2app`](https://py2app.readthedocs.io/en/latest/).
 
 ```
 cd app/
@@ -21,4 +21,4 @@ make
 
 ## Screenshots
 
-![start](screenshots/start.png)![oturn](screenshots/oturn.png)![xwin](screenshots/xwin.png)![owin](screenshots/owin.png)![draw](screenshots/draw.png)
+![start](screenshots/start.png)![xwin](screenshots/xwin.png)![owin](screenshots/owin.png)

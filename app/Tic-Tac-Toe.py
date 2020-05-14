@@ -9,27 +9,25 @@ class TicTacToe:
         self.buttons = []
         self.move_count = 0
         self.game_end = False
+        self.x = "x"
+        self.o = "o"
 
-        self.create_window()
-        self.attach_buttons()
-
-
-    def create_window(self):
         self.window = tk.Tk()
         self.window.title("Tic Tac Toe!")
-        self.window.geometry("200x200")
         self.window.resizable(False, False)
-
-        self.status = tk.StringVar()
-        tk.Label(self.window, textvariable=self.status, pady=10).pack()
+        self.attach_buttons()
 
 
     def add_button(self, row_frame, label):
         pos = len(self.buttons)
         self.buttons.append(
-            tk.Button(row_frame, text=label, relief=tk.GROOVE, 
-                      height=2, width=2, 
-                      command=lambda: self.play(pos)))
+            tk.Button(row_frame, text=label,
+                      width=2,
+                      bg="navy", fg="white", bd=8,
+                      font="Helvetica 56 bold",
+                      command=lambda: self.play(pos)
+            )
+        )
         self.buttons[pos].pack(side="left")
 
 
@@ -41,9 +39,17 @@ class TicTacToe:
 
             self.add_button(row_frame, label)
 
+        self.buttons.append(
+            tk.Button(self.window,
+                text="Restart",
+                bg="red", fg="white", bd=8,
+                font="Helvetica 22 bold",
+                command=lambda: self.restart()
+            ).pack(fill=tk.X, side="bottom")
+        )
+
 
     def start(self):
-        self.status.set("X's turn")
         self.window.mainloop()
 
 
@@ -55,11 +61,9 @@ class TicTacToe:
             self.move_count += 1
 
             if self.move_count % 2 == 1:
-                self.board[pos] = "X"
-                self.status.set("O's turn")
+                self.board[pos] = self.x
             else:
-                self.board[pos] = "O"
-                self.status.set("X's turn")
+                self.board[pos] = self.o
 
         self.update()
         self.end()
@@ -85,9 +89,8 @@ class TicTacToe:
 
         for pos in winning_positions:
             if (self.board[pos[0]] == self.board[pos[1]] == self.board[pos[2]] and 
-                self.board[pos[0]] in ["X", "O"]):
+                self.board[pos[0]] in [self.x, self.o]):
                 self.game_end = True
-                self.status.set(f"{self.board[pos[0]]} wins!")
 
                 for i in pos:
                     self.buttons[i].config(bg="orange")
@@ -96,9 +99,13 @@ class TicTacToe:
             os.system("afplay -t 0.05s click.mp3")
             if self.move_count == len(self.board):
                 self.game_end = True
-                self.status.set("Draw!")
         else:
             os.system("afplay -t 0.05s win.mp3")
+
+
+    def restart(self):
+        self.window.destroy()
+        self.__init__()
 
 
 if __name__ == "__main__":
