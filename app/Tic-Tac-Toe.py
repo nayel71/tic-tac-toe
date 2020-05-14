@@ -41,10 +41,10 @@ class TicTacToe:
 
         self.buttons.append(
             tk.Button(self.window,
-                text="Restart",
-                bg="red", fg="white", bd=8,
-                font="Helvetica 22 bold",
-                command=lambda: self.restart()
+                      text="Restart",
+                      bg="red", fg="white", bd=8,
+                      font="Helvetica 22 bold",
+                      command=lambda: self.restart()
             ).pack(fill=tk.X, side="bottom")
         )
 

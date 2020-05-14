@@ -40,10 +40,10 @@ class TicTacToe:
 
         self.buttons.append(
             tk.Button(self.window,
-                text="Restart",
-                bg="red", fg="white", bd=8,
-                font="Helvetica 22 bold",
-                command=lambda: self.restart()
+                      text="Restart",
+                      bg="red", fg="white", bd=8,
+                      font="Helvetica 22 bold",
+                      command=lambda: self.restart()
             ).pack(fill=tk.X, side="bottom")
         )
 
@@ -94,7 +94,7 @@ class TicTacToe:
                 for i in pos:
                     self.buttons[i].config(bg="orange")
 
-        if not self.game_end and self.move_count == len(self.board):
+        if self.move_count == len(self.board):
             self.game_end = True
 
 
