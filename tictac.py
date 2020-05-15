@@ -70,7 +70,8 @@ class TicTacToe:
             else:
                 self.board[pos] = self.o
 
-        self.buttons[pos].config(text=self.board[pos])
+            self.buttons[pos].config(text=self.board[pos])
+
         self.end()
 
 
