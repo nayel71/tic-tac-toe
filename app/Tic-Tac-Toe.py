@@ -71,16 +71,8 @@ class TicTacToe:
             else:
                 self.board[pos] = self.o
 
-        self.update()
+        self.buttons[pos].config(text=self.board[pos])
         self.end()
-
-
-    def update(self):
-        if self.game_end:
-            return
-
-        for i, label in enumerate(self.board):
-            self.buttons[i].config(text=label)
 
 
     def end(self):
