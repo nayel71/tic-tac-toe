@@ -4,19 +4,26 @@ import tkinter as tk
 import os
 
 class TicTacToe:
+    X = "x"
+    O = "o"
+    blank = " "
+    winning_positions = ((0, 1, 2), # first row
+                         (3, 4, 5), # second row
+                         (6, 7, 8), # third row
+                         (0, 3, 6), # first column
+                         (1, 4, 7), # second column
+                         (2, 5, 8), # third column
+                         (0, 4, 8), # left diagonal
+                         (2, 4, 6)) # right diagonal
+
+
     def __init__(self):
-        self.x = "x"
-        self.o = "o"
-        self.blank = " "
+        self.buttons = []
+        self.first_player_turn = True
 
         self.board = []
-        self.board_size = 9
-        for i in range(self.board_size):
-                self.board.append(self.blank)
-
-        self.buttons = []
-        self.move_count = 0
-        self.game_end = False
+        for i in range(9):
+            self.board.append(TicTacToe.blank)
 
         self.window = tk.Tk()
         self.window.title("Tic Tac Toe!")
@@ -60,43 +67,28 @@ class TicTacToe:
 
 
     def click(self, pos):
-        if self.game_end or self.board[pos] != self.blank:
-            return
+        if self.board[pos] == TicTacToe.blank and not self.end():
+            if self.first_player_turn:
+                self.board[pos] = TicTacToe.X
+            else:
+                self.board[pos] = TicTacToe.O
 
-        self.move_count += 1
+            self.buttons[pos].config(text=self.board[pos], relief=tk.SUNKEN)
+            self.first_player_turn = not self.first_player_turn
 
-        if self.move_count % 2 == 1:
-            self.board[pos] = self.x
-        else:
-            self.board[pos] = self.o
-
-        self.buttons[pos].config(text=self.board[pos], relief=tk.SUNKEN)
-        self.end()
+            if not self.end():
+                os.system("afplay -t 0.05s click.mp3")
+            else:
+                os.system("afplay -t 0.05s win.mp3")
 
 
     def end(self):
-        winning_positions = [[0, 1, 2], # first row
-                             [3, 4, 5], # second row
-                             [6, 7, 8], # third row
-                             [0, 3, 6], # first column
-                             [1, 4, 7], # second column
-                             [2, 5, 8], # third column
-                             [0, 4, 8], # left diagonal
-                             [2, 4, 6]] # right diagonal
-
-        for pos in winning_positions:
-            if self.board[pos[0]] == self.board[pos[1]] == self.board[pos[2]] != self.blank:
-                self.game_end = True
-
+        for pos in TicTacToe.winning_positions:
+            if self.board[pos[0]] == self.board[pos[1]] == self.board[pos[2]] != TicTacToe.blank:
                 for i in pos:
                     self.buttons[i].config(bg="orange")
 
-        if not self.game_end: 
-            os.system("afplay -t 0.05s click.mp3")
-            if self.move_count == self.board_size:
-                self.game_end = True
-        else:
-            os.system("afplay -t 0.05s win.mp3")
+                return True
 
 
     def restart(self):
