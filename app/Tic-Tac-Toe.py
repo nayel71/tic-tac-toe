@@ -60,19 +60,17 @@ class TicTacToe:
 
 
     def click(self, pos):
-        if self.game_end:
+        if self.game_end or self.board[pos] != self.blank:
             return
 
-        if self.board[pos] == self.blank:
-            self.move_count += 1
+        self.move_count += 1
 
-            if self.move_count % 2 == 1:
-                self.board[pos] = self.x
-            else:
-                self.board[pos] = self.o
+        if self.move_count % 2 == 1:
+            self.board[pos] = self.x
+        else:
+            self.board[pos] = self.o
 
-            self.buttons[pos].config(text=self.board[pos])
-
+        self.buttons[pos].config(text=self.board[pos], relief=tk.SUNKEN)
         self.end()
 
 
