@@ -28,6 +28,7 @@ class TicTacToe:
         self.window.title("Tic Tac Toe!")
         self.window.resizable(False, False)
         self.attach_buttons()
+        self.window.mainloop()
 
 
     def add_button(self, row_frame, label):
@@ -61,10 +62,6 @@ class TicTacToe:
         )
 
 
-    def start(self):
-        self.window.mainloop()
-
-
     def click(self, pos):
         if self.board[pos] == TicTacToe.BLANK and not self.end():
             if self.first_player_turn:
@@ -93,4 +90,3 @@ class TicTacToe:
 
 if __name__ == "__main__":
     game = TicTacToe()
-    game.start()

@@ -29,6 +29,7 @@ class TicTacToe:
         self.window.title("Tic Tac Toe!")
         self.window.resizable(False, False)
         self.attach_buttons()
+        self.window.mainloop()
 
 
     def add_button(self, row_frame, label):
@@ -60,10 +61,6 @@ class TicTacToe:
                       command=lambda: self.restart()
             ).pack(fill=tk.X, side="bottom")
         )
-
-
-    def start(self):
-        self.window.mainloop()
 
 
     def click(self, pos):
@@ -98,4 +95,3 @@ class TicTacToe:
 
 if __name__ == "__main__":
     game = TicTacToe()
-    game.start()
