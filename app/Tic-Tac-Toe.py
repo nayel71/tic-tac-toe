@@ -6,8 +6,8 @@ import os
 class TicTacToe:
     X = "x"
     O = "o"
-    blank = " "
-    winning_positions = ((0, 1, 2), # first row
+    BLANK = " "
+    WINNING_POSITIONS = ((0, 1, 2), # first row
                          (3, 4, 5), # second row
                          (6, 7, 8), # third row
                          (0, 3, 6), # first column
@@ -23,7 +23,7 @@ class TicTacToe:
 
         self.board = []
         for i in range(9):
-            self.board.append(TicTacToe.blank)
+            self.board.append(TicTacToe.BLANK)
 
         self.window = tk.Tk()
         self.window.title("Tic Tac Toe!")
@@ -67,7 +67,7 @@ class TicTacToe:
 
 
     def click(self, pos):
-        if self.board[pos] == TicTacToe.blank and not self.end():
+        if self.board[pos] == TicTacToe.BLANK and not self.end():
             if self.first_player_turn:
                 self.board[pos] = TicTacToe.X
             else:
@@ -83,8 +83,8 @@ class TicTacToe:
 
 
     def end(self):
-        for pos in TicTacToe.winning_positions:
-            if self.board[pos[0]] == self.board[pos[1]] == self.board[pos[2]] != TicTacToe.blank:
+        for pos in TicTacToe.WINNING_POSITIONS:
+            if self.board[pos[0]] == self.board[pos[1]] == self.board[pos[2]] != TicTacToe.BLANK:
                 for i in pos:
                     self.buttons[i].config(bg="orange")
 
